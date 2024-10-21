@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    @font-face {
+        font-family: Poppins;
+        src: url('/public/assets/Poppins/Poppins-Regular.ttf') format('ttf');
+    }
+}
+
+.btn {
+    @apply shadow-md py-3 px-6 rounded-md transition duration-200 border-current border w-fit h-12;
+}
+
+.btn-primary{
+    @apply bg-primary text-white;
+}
+
+.btn-white{
+    @apply bg-white text-primary;
+}

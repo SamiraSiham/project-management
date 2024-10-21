@@ -1,0 +1,51 @@
+<template>
+    <section class="flex justify-center items-center w-full px-3 mt-3">
+        <div
+            class="flex flex-row max-md:flex-col-reverse items-center gap-10 max-md:mt-3 md:mt-3"
+        >
+            <!-- Content -->
+            <div class="flex flex-1 flex-col max-md:items-center items-start">
+                <h2
+                    class="text-primary text-3xl md:text-4xl lg:text-5xl max-md:text-center text-left mb-6"
+                >
+                    A simple Project Manager
+                </h2>
+                <p class="text-gray text-lg max-md:text-center text-left mb-6">
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Sem
+                    orci faucibus augue molestie facilisis eget sapien tristique
+                    aptent. Phasellus sit ligula natoque at efficitur varius
+                    posuere scelerisque? Luctus dictumst cras cras mattis
+                    dignissim massa facilisi congue massa.
+                </p>
+                <div class="flex justify-center flex-wrap gap-3">
+                    <button
+                        type="button"
+                        class="btn btn-primary hover:bg-white hover:text-primary hover:border-primary"
+                    >
+                        Commencer
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-white hover:bg-primary hover:border-white hover:text-white"
+                    >
+                        Contacter-nous
+                    </button>
+                </div>
+            </div>
+            <!-- Image -->
+            <div class="flex justify-center flex-1 md:mb-16 max-md:mb-3 items-center lg:mb-0 z-10">
+                <img :src="hero" class="w-5/6 h-5/6 sm:w-3/4 sm:h-3/4 md:w-[80%] md:h-full" alt="">
+            </div>
+        </div>
+    </section>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            hero: "/assets/images/hero.svg",
+        };
+    },
+};
+</script>
