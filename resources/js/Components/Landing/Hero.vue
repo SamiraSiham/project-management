@@ -1,10 +1,10 @@
 <template>
-    <section class="flex justify-center items-center w-full px-3 mt-3">
+    <section class="flex justify-center items-center w-full p-3">
         <div
             class="flex flex-row max-md:flex-col-reverse items-center gap-10 max-md:mt-3 md:mt-3"
         >
             <!-- Content -->
-            <div class="flex flex-1 flex-col max-md:items-center items-start">
+            <div class="flex flex-1 flex-col max-md:items-center items-start ml-8">
                 <h2
                     class="text-primary text-3xl md:text-4xl lg:text-5xl max-md:text-center text-left mb-6"
                 >

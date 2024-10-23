@@ -14,8 +14,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('AuthContainer', function () {
-    return Inertia::render('AuthContainer');
+Route::get('about', function () {
+    return Inertia::render('about');
 });
 
 

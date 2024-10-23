@@ -7,9 +7,9 @@ const toggleMenu = () => {
 };
 </script>
 <template>
-    <header>
+    <header class="bg-white shadow-sm">
         <nav
-            class="flex items-center py-4 max-md:pe-12 max-md:ps-5 md:justify-center max-md:justify-around max-md:gap-x-2"
+            class="container mx-auto flex justify-between items-center py-4"
             :class="open ? 'flex-col' : 'flex-row'"
         >
             <div :class="open ? 'py-1 flex w-full' : 'py-1 flex items-center gap-x-2'">
