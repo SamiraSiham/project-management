@@ -21,9 +21,8 @@ export default {
                 gray: "#4b5563",
                 light : '#f9f9f3',
                 dark : '#0c2b4d',
-                // accent : '#407BFF'
-                accent: '#87364a',
-                // 'accent-2' : '#5df0f1'
+                // accent: '#87364a',
+                accent: '#089ddb',
             },
         },
     },
