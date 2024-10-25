@@ -1,16 +1,19 @@
+<script setup>
+    import { Link } from '@inertiajs/vue3';
+</script>
 <template>
     <section class="flex justify-center items-center w-full px-3">
         <div
             class="flex flex-row max-md:flex-col-reverse items-center gap-10 max-md:mt-3"
         >
             <!-- Content -->
-            <div class="flex flex-1 flex-col max-md:items-center items-start">
+            <div class="flex flex-1 flex-col max-md:items-center items-start ml-8">
                 <h2
-                    class="text-blue underline decoration-green text-3xl md:text-4xl lg:text-5xl max-md:text-center text-left mb-6"
+                    class="text-accent decoration-green text-3xl md:text-3xl lg:text-4xl max-md:text-center text-left mb-6"
                 >
                     A simple Project Manager
                 </h2>
-                <p class="text-gray text-lg max-md:text-center text-left mb-6">
+                <p class="text-gray text-md max-md:text-center text-left mb-6">
                     Lorem ipsum odor amet, consectetuer adipiscing elit. Sem
                     orci faucibus augue molestie facilisis eget sapien tristique
                     aptent. Phasellus sit ligula natoque at efficitur varius
@@ -22,14 +25,14 @@
                         type="button"
                         class="btn btn-dark hover:bg-white hover:text-accent hover:border-accent"
                     >
-                        Commencer
+                        Get Started
                     </button>
-                    <button
-                        type="button"
+                    <Link
+                        :href="route('contact')"
                         class="btn btn-white hover:bg-accent hover:border-white hover:text-white"
                     >
-                        Contacter-nous
-                    </button>
+                        Contact Us
+                    </Link>
                 </div>
             </div>
             <!-- Image -->
