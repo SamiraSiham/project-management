@@ -1,21 +1,21 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
+    form.post(route("register"), {
+        onFinish: () => form.reset("password", "password_confirmation"),
     });
 };
 </script>
@@ -23,8 +23,98 @@ const submit = () => {
 <template>
     <GuestLayout>
         <Head title="Register" />
-
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" class="space-y-6">
+            <div class="space-y-1">
+                <label for="prenom" class="block text-sm font-medium text-gray"
+                    >First Name</label
+                >
+                <input
+                    v-model="prenom"
+                    type="text"
+                    id="prenom"
+                    required
+                    class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                />
+            </div>
+            <div class="space-y-1">
+                <label for="nom" class="block text-sm font-medium text-gray"
+                    >Last Name</label
+                >
+                <input
+                    v-model="nom"
+                    type="text"
+                    id="nom"
+                    required
+                    class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                />
+            </div>
+            <div class="space-y-1">
+                <label
+                    for="telephone"
+                    class="block text-sm font-medium text-gray"
+                    >Phone Number</label
+                >
+                <input
+                    v-model="telephone"
+                    type="text"
+                    id="telephone"
+                    required
+                    class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                />
+            </div>
+            <div class="space-y-1">
+                <label for="email" class="block text-sm font-medium text-gray"
+                    >Email</label
+                >
+                <input
+                    v-model="email"
+                    type="email"
+                    id="email"
+                    required
+                    class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                />
+            </div>
+            <div class="space-y-1">
+                <label
+                    for="password"
+                    class="block text-sm font-medium text-gray"
+                    >Password</label
+                >
+                <input
+                    v-model="password"
+                    type="password"
+                    id="password"
+                    required
+                    class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                />
+            </div>
+            <div class="space-y-1">
+                <label
+                    for="password_confirmation"
+                    class="block text-sm font-medium text-gray"
+                    >Password Confirmation</label
+                >
+                <input
+                    v-model="password_confirmation"
+                    type="password"
+                    id="password_confirmation"
+                    required
+                    class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                />
+            </div>
+            <div class="space-y-1">
+                <Link :href="route('login')" >
+                    Already have an account ? <span class="underline">Log in here</span>
+                </Link>
+            </div>
+            <button
+                type="submit"
+                class="w-full bg-accent text-white py-2 rounded-lg shadow-md hover:bg-accent-dark transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent-light"
+            >
+                Create An Account
+            </button>
+        </form>
+        <!-- <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Name" />
 
@@ -108,6 +198,6 @@ const submit = () => {
                     Register
                 </PrimaryButton>
             </div>
-        </form>
+        </form> -->
     </GuestLayout>
 </template>
