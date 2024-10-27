@@ -10,14 +10,14 @@
           <!-- Information Section -->
           <div class="p-8 w-1/2 mx-auto">
             <h1 class="text-gray-900 text-2xl font-bold mb-4 text-center">Pour plus d'informations</h1>
-            <div class="p-4 flex flex-col gap-y-3 bg-white rounded-lg text-lg shadow-md">
-              <p class="p-3 text-center bg-white rounded-lg text-lg shadow-md">
+            <div class="p-4 flex flex-col gap-y-3 bg-white rounded-lg text-xl">
+              <p class="p-3 text-center bg-white rounded-lg text-xl shadow-md">
                 Remplissez vos informations dans le formulaire et nous vous contacterons.
               </p>
-              <p class="p-3 text-center bg-primary text-accent rounded-lg text-lg shadow-md">
+              <p class="p-3 text-center bg-primary text-accent rounded-lg text-xl shadow-md">
                 Nous sommes ici pour répondre à toutes vos questions et vous fournir l'assistance dont vous avez besoin.
               </p>
-              <p class="p-6 bg-white rounded-lg text-lg shadow-md">
+              <p class="p-6 bg-white rounded-lg text-xl shadow-md">
                 N'hésitez pas à nous faire part de vos préoccupations, nous sommes impatients de vous aider!
               </p>
             </div>

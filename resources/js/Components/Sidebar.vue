@@ -23,7 +23,7 @@ const toggleManagement = () => {
 </script>
 <template>
     <div
-        class="min-h-screen p-3 bg-white shadow-lg"
+        class="min-h-screen p-3 bg-white shadow"
         :class="open ? 'w-[550px] rounded-none' : 'w-20'"
     >
         <div class="px-2">
