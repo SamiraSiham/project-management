@@ -39,37 +39,38 @@ const submit = () => {
 
         <form @submit.prevent="submit" class="space-y-6">
             <div class="space-y-1">
-                <label for="email" class="block text-sm font-medium text-gray"
-                    >Email</label
-                >
-                <input
-                    v-model="email"
-                    type="email"
+                <InputLabel for="email" value="Email" />
+
+                <TextInput
                     id="email"
+                    type="email"
+                    class="mt-1 block w-full"
+                    v-model="form.email"
                     required
-                    class="block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                    autofocus
+                    autocomplete="username"
                 />
+
+                <InputError class="mt-2" :message="form.errors.email" />
             </div>
             <div class="space-y-1">
-                <label
-                    for="password"
-                    class="block text-sm font-medium text-gray"
-                    >Password</label
-                >
-                <input
-                    v-model="password"
-                    type="password"
+                <InputLabel for="password" value="Password" />
+
+                <TextInput
                     id="password"
+                    type="password"
+                    class="mt-1 block w-full"
+                    v-model="form.password"
                     required
-                    class="block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                    autocomplete="current-password"
                 />
+
+                <InputError class="mt-2" :message="form.errors.password" />
             </div>
             <div class="space-y-1 flex items-center justify-between">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600"
-                        >Remember me</span
-                    >
+                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
                 </label>
                 <Link
                     v-if="canResetPassword"
@@ -78,18 +79,26 @@ const submit = () => {
                 >
                     Forgot your password?
                 </Link>
+                <PrimaryButton
+                    class="ms-4 bg-dark "
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                >
+                    Connexion
+                </PrimaryButton>
             </div>
             <div class="space-y-1">
-                <Link :href="route('register')" >
-                    Don't have an account yet ? <span class="underline">Create it here</span>
+                <Link :href="route('register')">
+                    Don't have an account yet ?
+                    <span class="underline">Create it here</span>
                 </Link>
             </div>
-            <button
+            <!-- <button
                 type="submit"
                 class="w-full bg-accent text-white py-2 rounded-lg shadow-md hover:bg-accent-dark transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent-light"
             >
                 Connexion
-            </button>
+            </button> -->
         </form>
 
         <!-- <form @submit.prevent="submit">
