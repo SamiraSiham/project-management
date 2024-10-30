@@ -40,7 +40,7 @@ class PermissionController extends Controller
             Permission::create([
                 'name'=> $request->name,
             ]);
-            return redirect()->route('permission.index');
+            return redirect()->route('Permissions');
         }else{
             return redirect()->route('permission.create')->withInput()->withErrors($validator);
         }
@@ -70,14 +70,14 @@ class PermissionController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required|unique:permissions|max:20'
+            'name' => 'required|unique:permissions,name,'.$id.'|max:20'
         ]);
         if($validator->passes()){
             Permission::where('id',$id)->update([
                 'name'=> $request->name,
                 'created_at' =>now()
             ]);
-            return redirect()->route('permission.index');
+            return redirect()->route('Permissions');
         }else{
             return redirect()->route('permission.update')->withInput()->withErrors($validator);
         }
@@ -89,6 +89,6 @@ class PermissionController extends Controller
     public function destroy(string $id)
     {
         Permission::where('id',$id)->delete();
-        return redirect()->route('permission.index');
+        return redirect()->route('Permissions');
     }
 }

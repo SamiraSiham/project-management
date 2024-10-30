@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm, router } from "@inertiajs/vue3";
+import dayjs from "dayjs";
 const props = defineProps({
     permissions: {
         type: Array,
@@ -62,7 +63,9 @@ function deletePermission(id) {
                                 {{ permission.name }}
                             </td>
                             <td class="px-6 py-3 text-left">
-                                {{ permission.created_at }}
+                                {{
+                                    dayjs(permission.created_at).format("MMM,DD,YYYY")
+                                }}
                             </td>
                             <td class="px-6 py-3 text-center">
                                 <Link

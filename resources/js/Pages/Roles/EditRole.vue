@@ -23,12 +23,11 @@ console.log(
 
 const form = useForm({
     name: props.role.name,
-    permissions: [],
-    hasPermissions: props.hasPermissions,
+    permissions: props.hasPermissions,
 });
 
 const submit = () => {
-    form.put(route("role.update",props.role.id), {
+    form.put(route("role.update", props.role.id), {
         onFinish: () => form.reset("password"),
     });
 };
@@ -78,7 +77,7 @@ const submit = () => {
                                         name="permissions"
                                         type="checkbox"
                                         :value="permission.name"
-                                        v-model="form.hasPermissions"
+                                        v-model="form.permissions"
                                     />
                                     {{ permission.name }}
                                 </label>
