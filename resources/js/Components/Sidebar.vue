@@ -16,15 +16,15 @@ let toggleToolsbtn = ref(false);
 const toggleTools = () => {
     toggleToolsbtn.value = !toggleToolsbtn.value;
 };
-let toggleManagementbtn = ref(false);
-const toggleManagement = () => {
-    toggleManagementbtn.value = !toggleManagementbtn.value;
+let toggleResearchbtn = ref(false);
+const toggleResearch = () => {
+    toggleResearchbtn.value = !toggleResearchbtn.value;
 };
 </script>
 <template>
     <div
         class="min-h-screen p-3 bg-white shadow"
-        :class="open ? 'w-[550px] rounded-none' : 'w-20'"
+        :class="open ? 'w-[500px] rounded-none' : 'w-20'"
     >
         <div class="px-2">
             <div
@@ -48,14 +48,14 @@ const toggleManagement = () => {
             </div>
 
             <div :class="open ? '' : 'hidden'" class="w-full">
-                <h2 class="text-sm font-semibold mt-8 text-center text-accent">
-                    Vous pouvez rechercher des outils pour:
+                <h2 class="text-lg font-semibold mt-8 text-center text-accent">
+                    You can search for : 
                 </h2>
                 <div class="flex flex-col my-8 items-center justify-center">
                     <div
                         class="flex justify-between w-full items-center gap-x-3 cursor-pointer" @click="toggleCourses"
                     >
-                        <h2 class="text-md cursor-pointer">Courses</h2>
+                        <h2 class="text-md cursor-pointer">Management Courses</h2>
                         <div
                             class="rounded-full w-5 h-5 text-center flex items-center justify-center bg-accent text-white text-md"
                         >
@@ -89,7 +89,7 @@ const toggleManagement = () => {
                     <div
                         class="flex justify-between w-full items-center gap-x-3 cursor-pointer" @click="toggleTools"
                     >
-                        <h2 class="text-md">Tools</h2>
+                        <h2 class="text-md">Management Tools</h2>
                         <div
                             class="rounded-full w-5 h-5 text-center flex items-center justify-center bg-accent text-white text-md"
                         >
@@ -123,14 +123,14 @@ const toggleManagement = () => {
                     </ul>
                 </div>
                 <div class="flex flex-col my-8 items-center justify-center">
-                    <div class="flex justify-between w-full items-center cursor-pointer" @click="toggleManagement">
-                        <h2 class="text-md">Research</h2>
+                    <div class="flex justify-between w-full items-center cursor-pointer" @click="toggleResearch">
+                        <h2 class="text-md">Management Research</h2>
                         <div
                             class="rounded-full w-5 h-5 text-center flex items-center justify-center bg-accent text-white text-md"
                         >
                             <i
                                 :class="
-                                    toggleManagementbtn ? 'fa-minus' : 'fa-plus'
+                                    toggleResearchbtn ? 'fa-minus' : 'fa-plus'
                                 "
                                 class="fa-solid cursor-pointer"
                                 
@@ -138,27 +138,22 @@ const toggleManagement = () => {
                         </div>
                     </div>
                     <ul
-                        :class="toggleManagementbtn ? '' : 'hidden'"
+                        :class="toggleResearchbtn ? '' : 'hidden'"
                         class="py-2"
                     >
                         <li class="list-none py-2">
                             <a href="" class="text-sm hover:underline"
-                                >Market Research</a
+                                >Moroccan Context</a
                             >
                         </li>
                         <li class="list-none py-2">
                             <a href="" class="text-sm hover:underline"
-                                >Strategy</a
+                                >International Context</a
                             >
                         </li>
                         <li class="list-none py-2">
                             <a href="" class="text-sm hover:underline"
-                                >Finance</a
-                            >
-                        </li>
-                        <li class="list-none py-2">
-                            <a href="" class="text-sm hover:underline"
-                                >Project Management</a
+                                >Applied Context</a
                             >
                         </li>
                     </ul>

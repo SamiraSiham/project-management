@@ -10,10 +10,10 @@ const toggleMenu = () => {
 </script>
 <template>
     <header>
-        <nav class="bg-white md:py-2 shadow">
+        <nav class="bg-white md:py-2 shadow-md">
             <div class="flex gap-x-3 items-center font-medium justify-around px-2">
                 <div
-                    class="flex max-md:min-w-full max-md:gap-x-12 z-50 py-5 justify-around md:justify-center md:w-[50%] items-center"
+                    class="flex max-md:min-w-full max-md:gap-x-12 z-50 py-4 justify-around md:justify-center md:w-[50%] items-center"
                 >
                     <div class="flex items-center gap-x-2">
                         <svg
@@ -54,10 +54,10 @@ const toggleMenu = () => {
                     </li>
                     <li>
                         <Link
-                            href="#about"
+                            :href="route('about')"
                             class="inline-block hover:decoration-accent hover:text-accent"
                         >
-                            A propos
+                            About Us
                         </Link>
                     </li>
                     <li>
@@ -65,7 +65,7 @@ const toggleMenu = () => {
                             :href="route('contact')"
                             class="inline-block hover:decoration-accent hover:text-accent"
                         >
-                            Contact
+                            Contact Us
                         </Link>
                     </li>
                     <li>
@@ -80,7 +80,7 @@ const toggleMenu = () => {
                 </div>
                 <!-- mobile menu -->
                 <ul
-                    class="md:hidden bg-white absolute min-w-full min-h-[110%] bottom-0 top-0 py-24 gap-y-2 flex flex-col items-center duration-500"
+                    class="md:hidden bg-white absolute min-w-full min-h-[110%] bottom-0 top-14 py-24 gap-y-2 flex flex-col items-center duration-500 z-50"
                     :class="open ? 'left-[-100%]' : 'left-0'"
                 >
                     <li class="w-full flex justify-center">
@@ -98,7 +98,7 @@ const toggleMenu = () => {
                             class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
                         >
                             <i class="fa-regular fa-address-card fa-lg"></i>
-                            A propos
+                            About Us
                         </Link>
                     </li>
                     <li class="w-full flex justify-center">
@@ -109,7 +109,7 @@ const toggleMenu = () => {
                             <i
                                 class="fa-solid fa-mobile-screen-button fa-lg"
                             ></i>
-                            Contact
+                            Contact Us
                         </Link>
                     </li>
                     <li class="flex w-full items-center">

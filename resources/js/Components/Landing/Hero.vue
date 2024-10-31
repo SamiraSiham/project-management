@@ -47,7 +47,7 @@
 export default {
     data() {
         return {
-            hero: "/assets/images/hero2.svg",
+            hero: "/assets/images/Tabs-rafiki.svg",
         };
     },
 };

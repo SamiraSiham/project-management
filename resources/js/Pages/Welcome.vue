@@ -1,9 +1,10 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
+// import { Link } from "@inertiajs/vue3";
 import Header from "@/Components/Landing/Header.vue";
 import Hero from "@/Components/Landing/Hero.vue";
+import List from "./List.vue";
 import Sidebar from "@/Components/Sidebar.vue";
-import about from "./about.vue";
 import Footer from "@/Components/Landing/Footer.vue";
 defineProps({
     canLogin: {
@@ -31,7 +32,7 @@ defineProps({
             <div class="flex flex-col max-md:max-w-[85%]">
                 <Header />
                 <Hero />
-                <about/>
+                <List />
                 <Footer/>
             </div>
         </div>
