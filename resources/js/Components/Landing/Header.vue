@@ -1,102 +1,103 @@
-<script setup>
-import { Link } from "@inertiajs/vue3";
-import { ref } from "vue";
-import SearchBar from "../SearchBar.vue";
-
-const open = ref(false);
-const toggleMenu = () => {
-    open.value = !open.value;
-};
-</script>
-
 <template>
-    <header>
-        <nav class="bg-white md:py-2 shadow">
-            <div class="flex gap-x-3 items-center font-medium justify-around px-2">
-                <!-- Logo et bouton du menu -->
-                <div class="flex max-md:min-w-full max-md:gap-x-12 z-50 py-5 justify-around md:justify-center md:w-[50%] items-center">
-                    <div class="flex items-center gap-x-2">
-                        <svg
-                            @click="toggleMenu"
-                            class="fill-accent w-[45px] h-[45px]"
-                            viewBox="0 0 512 512"
-                            id="book"
-                            fill="currentColor"
-                        >
-                            <!-- SVG content -->
-                        </svg>
-                        <span class="md:text-md max-md:text-2xl text-accent">Les Outils De Manager</span>
-                    </div>
-                    <div class="md:hidden" @click="toggleMenu">
-                        <i :class="open ? 'fa-close' : 'fa-bars'" class="fa-solid fa-2xl cursor-pointer"></i>
-                    </div>
-                </div>
+  <!-- Header -->
+  <header class="bg-white border-gray-200 p-4 shadow-lg flex justify-between items-center fixed top-0 left-0 w-full z-50">
+    
+    <!-- Logo and Navigation Links -->
+    <div class="flex items-center space-x-8">
+      
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-book text-accent p-4"></i>
+        <span class="font-bold text-xl text-dark">MANAGER TOOLS</span>
+      </div>
+      
+      <!-- Desktop Navigation Links -->
+      <ul class="hidden md:flex space-x-6 font-semibold text-gray-700">
+        <li><a href="#" class="hover:text-dark">HOME</a></li>
+        <li><a href="#" class="hover:text-dark">ABOUT</a></li>
+        <li><a href="#" class="hover:text-dark">CONTACT</a></li>
+      </ul>
+    </div>
 
-                <!-- Menu desktop -->
-                <ul class="md:flex md:justify-around hidden items-center md:gap-x-6 text-md w-full">
-                    <li>
-                        <Link href="/" class="inline-block hover:decoration-accent hover:text-accent">Home</Link>
-                    </li>
-                    <li>
-                        <Link href="#about" class="inline-block hover:decoration-accent hover:text-accent">A propos</Link>
-                    </li>
-                    <li>
-                        <Link :href="route('contact')" class="inline-block hover:decoration-accent hover:text-accent">Contact</Link>
-                    </li>
-                    <li><SearchBar /></li>
-                </ul>
-                
-                <div class="md:block hidden">
-                    <Link :href="route('login')" class="text-white bg-accent hover:bg-white border-2 hover:border-accent hover:text-accent rounded-full px-4 py-2">
-                        Login
-                    </Link>
-                </div>
+    <!-- Search Bar (Desktop only) -->
+    <div class="relative hidden md:block">
+      <input
+        type="text"
+        placeholder="Rechercher..."
+        class="border border-accent px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-accent"
+      />
+      <i class="fas fa-search absolute left-3 top-2.5 text-gray"></i>
+    </div>
 
-                <!-- Menu mobile -->
-                <ul
-                    class="md:hidden fixed inset-0 bg-white flex flex-col items-center py-24 gap-y-2 transition-transform duration-500"
-                    :class="open ? 'translate-x-0' : '-translate-x-full'"
-                    style="z-index: 100;"
-                >
-                    <!-- Bouton de fermeture -->
-                    <div class="absolute top-5 right-5">
-                        <button @click="toggleMenu" class="text-accent text-3xl">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
+    <!-- Right Side Icons and Buttons -->
+    <div class="flex items-center space-x-6">
+      
+      <!-- Sign-in Link (Desktop only) -->
+      <div class="hidden md:flex items-center text-gray-700 space-x-1">
+        <i class="fas fa-desktop"></i>
+        <a href="#" class="hover:text-dark">Se connecter</a>
+      </div>
 
-                    <!-- Liens du menu mobile -->
-                    <li class="w-full flex justify-center">
-                        <Link href="/" class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent">
-                            <i class="fa-solid fa-house fa-lg"></i> Home
-                        </Link>
-                    </li>
-                    <li class="w-full flex justify-center">
-                        <Link :href="route('about')" class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent">
-                            <i class="fa-regular fa-address-card fa-lg"></i> A propos
-                        </Link>
-                    </li>
-                    <li class="w-full flex justify-center">
-                        <Link :href="route('contact')" class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent">
-                            <i class="fa-solid fa-mobile-screen-button fa-lg"></i> Contact
-                        </Link>
-                    </li>
-                    <li class="flex w-full items-center">
-                        <SearchBar />
-                    </li>
-                    <div class="py-3 w-3/4 flex items-center justify-center">
-                        <Link :href="route('login')" class="text-white text-center bg-accent rounded-full px-4 py-2 w-1/2">
-                            Login
-                        </Link>
-                    </div>
-                </ul>
-            </div>
-        </nav>
-    </header>
+      <!-- Sign-up Button (Desktop only) -->
+      <a href="#" class="hidden md:inline-block bg-accent text-white px-4 py-2 rounded hover:bg-green-600 font-semibold">S'inscrire</a>
+
+      <!-- Mobile Settings Icon -->
+      <div class="flex items-center space-x-2 md:hidden">
+        <button @click="toggleMobileNav" class="text-gray-700">
+          <i class="fas fa-cog"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Sidebar Component -->
+    <mobilev :isMobileNavOpen="isMobileNavOpen" @toggleMobileNav="toggleMobileNav" />
+
+    <!-- Hamburger Icon for Mobile and Desktop Dropdown -->
+    <div @click="toggleDropdown" class="cursor-pointer text-gray-700">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Dropdown Menu Component for Mobile and Desktop -->
+    <submenu :isDropdownOpen="isDropdownOpen" @toggleDropdown="toggleDropdown" />
+  </header>
 </template>
 
-<style scoped>
-.z-50 {
-    z-index: 50;
-}
-</style>
+<script>
+import submenu from '@/Components/Landing/submenu.vue';
+import mobilev from '@/Components/Landing/mobilev.vue';
+
+export default {
+  components: {
+    submenu,
+    mobilev
+  },
+  data() {
+    return {
+      isDropdownOpen: false, // Dropdown state for mobile and desktop
+      isMobileNavOpen: false, // Mobile navigation state
+      openSubMenus: {
+        courses: false,
+        tools: false,
+        research: false,
+        about: false,
+        security: false,
+        help: false,
+      },
+    };
+  },
+  methods: {
+    // Toggle dropdown menu
+    toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    },
+    // Toggle mobile navigation
+    toggleMobileNav() {
+      this.isMobileNavOpen = !this.isMobileNavOpen;
+    },
+    // Toggle individual submenu
+    toggleSubMenu(menu) {
+      this.openSubMenus[menu] = !this.openSubMenus[menu];
+    },
+  },
+};
+</script>

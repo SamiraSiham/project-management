@@ -17,12 +17,10 @@ export default {
                 Poppins: ["Poppins", ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                // primary: "#fc4558",
                 gray: "#4b5563",
                 light : '#f9f9f3',
                 dark : '#0c2b4d',
-                // accent: '#87364a',
-                accent: '#089ddb',
+                accent: '#048944',
             },
         },
     },

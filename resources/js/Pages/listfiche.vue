@@ -1,7 +1,6 @@
 <template>
     <div class="font-Poppins">
         <div class="flex flex-nowrap flex-row w-full">
-                <Sidebar />
             <div class="flex flex-col w-full">
                 <Header /> 
                 <pack />
@@ -15,7 +14,6 @@
 </template>
 
 <script>
-import Sidebar from '@/Components/Sidebar.vue';
 import Header from '../Components/Landing/Header.vue';
 import pack from '@/Components/fiche/pack.vue';
 import list from '@/Components/fiche/list.vue';
@@ -24,7 +22,6 @@ import Footer from '@/Components/Landing/Footer.vue';
 export default{
     components: {
         Header,
-        Sidebar,
         pack,
         cart,
         list ,

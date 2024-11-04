@@ -2,7 +2,7 @@
     import { Link } from '@inertiajs/vue3';
 </script>
 <template>
-    <section class="flex justify-center items-center w-full px-3">
+    <section class="flex justify-center items-center w-full px-3 mt-8">
         <div
             class="flex flex-row max-md:flex-col-reverse items-center gap-10 max-md:mt-3"
         >

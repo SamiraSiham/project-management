@@ -22,8 +22,8 @@ Route::get('/contact', function(){
     return Inertia::render('ContactUs');
 })->name('contact');
 
-Route::get('/listfiche', function(){
-    return Inertia::render('listfiche');
+Route::get('/addfiche', function(){
+    return Inertia::render('addfiche');
 });
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white border border-2 rounded-lg shadow relative m-10">
+    <div class="bg-white  m-20">
       <div class="flex items-start justify-between p-5 border-b rounded-t">
         <h3 class="text-xl font-semibold">Ajouter une fiche</h3>
       </div>
@@ -96,7 +96,7 @@
   
           <!-- Submit Button -->
           <div class="p-4 border-t border-gray-200 rounded-b">
-            <button class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" 
+            <button class="text-white bg-accent hover:bg-accent focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" 
                     type="submit">Enregister tous</button>
           </div>
         </form>
