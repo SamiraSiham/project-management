@@ -2,22 +2,25 @@
 import { Link } from "@inertiajs/vue3";
 import { ref } from "vue";
 import SearchBar from "../SearchBar.vue";
+import Dropdown from "@/Components/Dropdown.vue";
+import DropdownLink from "@/Components/DropdownLink.vue";
 const open = ref(false);
 const toggleMenu = () => {
     open.value = !open.value;
-    // return open.value;
 };
 </script>
+
 <template>
     <header>
         <nav class="bg-white md:py-2 shadow-md">
-            <div class="flex gap-x-3 items-center font-medium justify-around px-2">
+            <div class="flex gap-x-2 items-center font-medium justify-around">
+                <!-- Logo et bouton du menu -->
                 <div
-                    class="flex max-md:min-w-full max-md:gap-x-12 z-50 py-4 justify-around md:justify-center md:w-[50%] items-center"
+                    class="flex max-md:min-w-full max-md:gap-x-12 md:gap-x-2 z-50 py-5 justify-around md:w-[25%] items-center"
                 >
-                    <div class="flex items-center gap-x-2">
+                    <div class="flex items-center gap-x-1">
                         <svg
-                            @click="toggleSidebar"
+                            @click="toggleMenu"
                             class="fill-accent w-[45px] h-[45px]"
                             viewBox="0 0 512 512"
                             id="book"
@@ -36,60 +39,196 @@ const toggleMenu = () => {
                     </div>
                     <div class="md:hidden" @click="toggleMenu">
                         <i
-                            :class="open ? 'fa-bars' : 'fa-close'"
+                            :class="open ? 'fa-close' : 'fa-bars'"
                             class="fa-solid fa-2xl cursor-pointer"
                         ></i>
                     </div>
                 </div>
+
+                <!-- Menu desktop -->
                 <ul
-                    class="md:flex md:justify-around hidden items-center md:gap-x-6 text-md w-full"
+                    class="md:flex md:justify-around text-sm hidden items-center md:gap-x-4 w-full"
                 >
                     <li>
                         <Link
                             href="/"
                             class="inline-block hover:decoration-accent hover:text-accent"
+                            >Home</Link
                         >
-                            Home
-                        </Link>
                     </li>
                     <li>
                         <Link
                             :href="route('about')"
                             class="inline-block hover:decoration-accent hover:text-accent"
+                            >About Us</Link
                         >
-                            About Us
-                        </Link>
                     </li>
                     <li>
                         <Link
                             :href="route('contact')"
                             class="inline-block hover:decoration-accent hover:text-accent"
+                            >Contact Us</Link
                         >
-                            Contact Us
-                        </Link>
                     </li>
-                    <li>
-                        <SearchBar/>
+                    <li class="relative">
+                        <Dropdown align="right" width="48">
+                            <template #trigger>
+                                <span class="inline-flex rounded-md">
+                                    <button
+                                        type="button"
+                                        class="inline-flex items-center rounded-md border border-transparent bg-white py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                    >
+                                        Courses
+
+                                        <svg
+                                            class="-me-0.5 ms-2 h-4 w-4"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+                                </span>
+                            </template>
+
+                            <template #content>
+                                <DropdownLink :href="route('profile.edit')">
+                                    General knowledge
+                                </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    Academics
+                                </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    Live courses
+                                </DropdownLink>
+                            </template>
+                        </Dropdown>
                     </li>
-                    <!-- <FichesPratiques /> -->
+                    <li class="relative">
+                        <Dropdown align="right" width="48">
+                            <template #trigger>
+                                <span class="inline-flex rounded-md">
+                                    <button
+                                        type="button"
+                                        class="inline-flex items-center rounded-md border border-transparent bg-white py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                    >
+                                        Tools
+
+                                        <svg
+                                            class="-me-0.5 ms-2 h-4 w-4"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+                                </span>
+                            </template>
+
+                            <template #content>
+                                <DropdownLink :href="route('profile.edit')">
+                                    Etude de marché
+                                </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    Marketing
+                                </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    Management Stratégique
+                                </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    Finance
+                                </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    RH et direction générale
+                                </DropdownLink>
+                            </template>
+                        </Dropdown>
+                    </li>
+
+                    <li class="relative">
+                        <Dropdown align="right" width="48">
+                            <template #trigger>
+                                <span class="inline-flex rounded-md">
+                                    <button
+                                        type="button"
+                                        class="inline-flex items-center rounded-md border border-transparent bg-white py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                    >
+                                        Research
+
+                                        <svg
+                                            class="-me-0.5 ms-2 h-4 w-4"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+                                </span>
+                            </template>
+
+                            <template #content>
+                                <DropdownLink :href="route('profile.edit')">
+                                    Moroccan Context
+                                </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    International Context
+                                </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    Applied Researches
+                                </DropdownLink>
+                            </template>
+                        </Dropdown>
+                    </li>
+                    <li><SearchBar /></li>
                 </ul>
+
                 <div class="md:block hidden">
-                    <Link :href="route('login')" class="text-white bg-accent hover:bg-white border-2 hover:border-accent hover:text-accent rounded-full px-4 py-2">
+                    <Link
+                        :href="route('login')"
+                        class="text-white bg-accent hover:bg-white border-2 hover:border-accent hover:text-accent rounded-full px-4 py-2"
+                    >
                         Login
                     </Link>
                 </div>
-                <!-- mobile menu -->
+
+                <!-- Menu mobile -->
                 <ul
-                    class="md:hidden bg-white absolute min-w-full min-h-[110%] bottom-0 top-14 py-24 gap-y-2 flex flex-col items-center duration-500 z-50"
-                    :class="open ? 'left-[-100%]' : 'left-0'"
+                    class="md:hidden fixed inset-0 bg-white flex flex-col items-center py-24 gap-y-2 transition-transform duration-500"
+                    :class="open ? 'translate-x-0' : '-translate-x-full'"
+                    style="z-index: 100"
                 >
+                    <!-- Bouton de fermeture -->
+                    <div class="absolute top-5 right-5">
+                        <button
+                            @click="toggleMenu"
+                            class="text-accent text-3xl"
+                        >
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Liens du menu mobile -->
                     <li class="w-full flex justify-center">
                         <Link
                             href="/"
                             class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
                         >
-                            <i class="fa-solid fa-house fa-lg"></i>
-                            Home
+                            <i class="fa-solid fa-house fa-lg"></i> Home
                         </Link>
                     </li>
                     <li class="w-full flex justify-center">
@@ -97,8 +236,8 @@ const toggleMenu = () => {
                             :href="route('about')"
                             class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
                         >
-                            <i class="fa-regular fa-address-card fa-lg"></i>
-                            About Us
+                            <i class="fa-regular fa-address-card fa-lg"></i> A
+                            propos
                         </Link>
                     </li>
                     <li class="w-full flex justify-center">
@@ -109,13 +248,12 @@ const toggleMenu = () => {
                             <i
                                 class="fa-solid fa-mobile-screen-button fa-lg"
                             ></i>
-                            Contact Us
+                            Contact
                         </Link>
                     </li>
                     <li class="flex w-full items-center">
-                        <SearchBar/>
+                        <SearchBar />
                     </li>
-                    <!-- <FichesPratiques /> -->
                     <div class="py-3 w-3/4 flex items-center justify-center">
                         <Link
                             :href="route('login')"
@@ -123,14 +261,15 @@ const toggleMenu = () => {
                         >
                             Login
                         </Link>
-                        <!-- <button
-                            class="text-white bg-accent rounded-full px-3 py-2 w-1/2"
-                        >
-                            Login
-                        </button> -->
                     </div>
                 </ul>
             </div>
         </nav>
     </header>
 </template>
+
+<style scoped>
+.z-50 {
+    z-index: 50;
+}
+</style>

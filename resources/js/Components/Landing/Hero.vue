@@ -21,12 +21,12 @@
                     dignissim massa facilisi congue massa.
                 </p>
                 <div class="flex justify-center flex-wrap gap-3">
-                    <button
-                        type="button"
+                    <Link
+                        :href="route('login')"
                         class="btn btn-dark hover:bg-white hover:text-accent hover:border-accent"
                     >
                         Get Started
-                    </button>
+                    </Link>
                     <Link
                         :href="route('contact')"
                         class="btn btn-white hover:bg-accent hover:border-white hover:text-white"

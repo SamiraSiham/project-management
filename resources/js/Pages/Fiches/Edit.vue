@@ -1,23 +1,37 @@
 <script setup>
 import InputError from "@/Components/InputError.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { defineProps } from "vue";
+import { defineProps, onMounted } from "vue";
 import { useForm } from "@inertiajs/vue3";
-import {Head, Link, router} from "@inertiajs/vue3";
-const form = useForm({
-    title: "",
-    author: "",
-    price: "",
-    categorie_id: "",
-    date_publication: "",
-    file_path: "",
-});
+import { Head, Link, router } from "@inertiajs/vue3";
+import Sidebar from "@/Components/Sidebar.vue";
 const data = defineProps({
+    fiche: Object,
     categories: Object,
-    errors : Object
+    errors: Object,
 });
+// onMounted(() => {
+//     console.log(data.fiche);
+// });
+const form = useForm({
+    title: data.fiche.title,
+    author: data.fiche.author,
+    price: data.fiche.price,
+    categorie_id: data.fiche.categorie_id,
+    date_publication: data.fiche.date_publication,
+    file_path: null,
+});
+
 function submit() {
-  router.post('/fiches', form)
+    router.post(`/fiches/${data.fiche.id}`, {
+        _method: "put",
+        title: form.title,
+        author: form.author,
+        price: form.price,
+        categorie_id: form.categorie_id,
+        date_publication: form.date_publication,
+        file_path: form.file_path,
+    });
 }
 </script>
 <template>
@@ -38,10 +52,7 @@ function submit() {
                     </div>
 
                     <div class="p-8 space-y-6">
-                        <form
-                            action="#"
-                            @submit.prevent="submit"
-                        >
+                        <form action="#" @submit.prevent="submit">
                             <div class="grid grid-cols-6 gap-6">
                                 <!-- Product Name -->
                                 <div class="col-span-6 sm:col-span-3">
@@ -58,7 +69,10 @@ function submit() {
                                         class="shadow-sm border border-gray text-gray sm:text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5"
                                         placeholder="Apple Imac 27”"
                                     />
-                                    <InputError class="mt-2" :message="form.errors.title" />
+                                    <InputError
+                                        class="mt-2"
+                                        :message="form.errors.title"
+                                    />
                                 </div>
 
                                 <!-- Category Select -->
@@ -89,7 +103,10 @@ function submit() {
                                             {{ i.nom_categorie }}
                                         </option>
                                     </select>
-                                    <InputError class="mt-2" :message="form.errors.categorie_id" />
+                                    <InputError
+                                        class="mt-2"
+                                        :message="form.errors.categorie_id"
+                                    />
                                 </div>
 
                                 <!-- Auteur -->
@@ -107,7 +124,10 @@ function submit() {
                                         class="shadow-sm border border-gray text-gray sm:text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5"
                                         placeholder="Apple"
                                     />
-                                    <InputError class="mt-2" :message="form.errors.author" />
+                                    <InputError
+                                        class="mt-2"
+                                        :message="form.errors.author"
+                                    />
                                 </div>
 
                                 <!-- Price -->
@@ -125,23 +145,11 @@ function submit() {
                                         class="shadow-sm border border-gray text-gray sm:text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5"
                                         placeholder="$2300"
                                     />
-                                    <InputError class="mt-2" :message="form.errors.price" />
+                                    <InputError
+                                        class="mt-2"
+                                        :message="form.errors.price"
+                                    />
                                 </div>
-
-                                <!-- Product Details -->
-                                <!-- <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="Fiche Details"
-                                        class="text-sm font-medium text-gray block mb-2"
-                                        >Fiche Details</label
-                                    >
-                                    <textarea
-                                        id="Fiche Details"
-                                        rows="6"
-                                        class="border border-gray text-gray sm:text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-4"
-                                        placeholder="Details"
-                                    ></textarea>
-                                </div> -->
 
                                 <!-- Date Input -->
                                 <div class="col-span-6 sm:col-span-3">
@@ -157,7 +165,10 @@ function submit() {
                                         id="date"
                                         class="shadow-sm border border-gray text-gray sm:text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5"
                                     />
-                                    <InputError class="mt-2" :message="form.errors.date_publication" />
+                                    <InputError
+                                        class="mt-2"
+                                        :message="form.errors.date_publication"
+                                    />
                                 </div>
                             </div>
 
@@ -181,7 +192,8 @@ function submit() {
                                         class="hidden"
                                         ref="fileInput"
                                         @input="
-                                            form.file_path = $event.target.files[0]
+                                            form.file_path =
+                                                $event.target.files[0]
                                         "
                                     />
                                     <div
@@ -238,7 +250,7 @@ function submit() {
                                     class="text-white bg-accent border hover:bg-white hover:text-accent hover:border-accent focus:ring-4 focus:ring-accent font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                     type="submit"
                                 >
-                                Save
+                                    Save
                                 </button>
                                 <Link
                                     :href="route('fiches.index')"
@@ -261,7 +273,7 @@ export default {
     data() {
         return {
             files: [],
-            selectedDate: "", // Data property to hold the selected date
+            selectedDate: "",
         };
     },
     methods: {
