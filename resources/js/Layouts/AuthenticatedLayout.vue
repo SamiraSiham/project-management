@@ -47,7 +47,13 @@ const showingNavigationDropdown = ref(false);
                                     :href="route('role.index')"
                                     :active="route().current('dashboard')"
                                 >
-                                    Role
+                                    Roles
+                                </NavLink>
+                                <NavLink
+                                    :href="route('user.index')"
+                                    :active="route().current('dashboard')"
+                                >
+                                    Users
                                 </NavLink>
                             </div>
                         </div>
