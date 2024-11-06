@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->decimal('price',4,2);
+            $table->decimal('price');
             $table->foreignId('categorie_id')->constrained('categorie')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date_publication')->nullable();
-            $table->string('file_path');
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }

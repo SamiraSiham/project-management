@@ -22,7 +22,7 @@ class GenreController extends Controller {
     */
 
     public function create() {
-        return Inertia::render( 'Genres/Create' );
+        // return Inertia::render( 'Genres/Create' );
     }
 
     /**
@@ -30,13 +30,20 @@ class GenreController extends Controller {
     */
 
     public function store( Request $request ) {
-        $rules = [ 'genre' => [ 'required', 'string', 'max:255', 'unique:genres' ] ];
-        $errors = [ 'genre.required' => 'this field is required',
-        'genre.string' => 'this field must be a string',
-        'genre.max' => 'this field must not exceed 255 characters',
-        'genre.unique' => 'this genre already exists', ];
-
-        $validator = Validator::make( $request, $rules, $errors );
+        try {
+            $request->validate( [
+                'genre' => 'required|max:255'
+            ], [
+                'genre.required' => 'this field is required',
+                'genre.max' => 'this field must not exceed 255 characters',
+            ] );
+            $genre = Genre::create( [
+                'genre' => $request->genre
+            ] );
+            return to_route( 'genres.index' );
+        } catch ( ValidationException $e ) {
+            return response()->json( [ 'errors' => $e->errors() ], 422 );
+        }
 
     }
 
@@ -53,7 +60,8 @@ class GenreController extends Controller {
     */
 
     public function edit( string $id ) {
-        return Inertia::render( 'Genres/Edit' );
+        $genre = Genre::findOrFail( $id );
+        return Inertia::render( 'Genres/Edit', compact( 'genre' ) );
     }
 
     /**
@@ -61,7 +69,21 @@ class GenreController extends Controller {
     */
 
     public function update( Request $request, string $id ) {
-        //
+        $genre = Genre::findOrFail( $id );
+        try {
+            $request->validate( [
+                'genre' => 'required|max:255'
+            ], [
+                'genre.required' => 'this field is required',
+                'genre.max' => 'this field must not exceed 255 characters',
+            ] );
+            $genre->update( [
+                'genre' => $request->genre
+            ] );
+            return to_route( 'genres.index' );
+        } catch ( ValidationException $e ) {
+            return response()->json( [ 'errors' => $e->errors() ], 422 );
+        }
     }
 
     /**
@@ -69,6 +91,8 @@ class GenreController extends Controller {
     */
 
     public function destroy( string $id ) {
-        //
+        $genre = Genre::findOrFail( $id );
+        $genre->delete();
+        return to_route( 'genres.index' );
     }
 }

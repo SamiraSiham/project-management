@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class FicheSeeder extends Seeder {
         $faker = Faker::create();
         $fileContent = $faker->paragraph;
         $fileName = 'fiche_1.txt';
-        Storage::put('public/fiches/' . $fileName, $fileContent);
+        Storage::put( 'public/fiches/' . $fileName, $fileContent );
         DB::table( 'fiches' )->insert(
             [
                 'id' => 1,
@@ -26,6 +27,9 @@ class FicheSeeder extends Seeder {
                 'price' => 10.50,
                 'categorie_id' => 1,
                 'file_path' => 'fiches/' . $fileName,
+                'date_publication' => Carbon::now()->format( 'Y-m-d' ),
+                'created_at' => Carbon::now()->format( 'Y-m-d H:i:s' ),
+                'updated_at' => Carbon::now()->format( 'Y-m-d H:i:s' )
             ]
         );
     }

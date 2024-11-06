@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Genre;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller {
     /**
@@ -31,7 +32,23 @@ class CategorieController extends Controller {
     */
 
     public function store( Request $request ) {
-        //
+        // dd($request->all());
+        try {
+            $request->validate( [
+                'nom_categorie' => 'required',
+                'genre_id' => 'required',
+            ], [
+                'nom_categorie.required' => 'this field is required',
+                'genre_id.required' => 'this field is required',
+            ] );
+            $categorie = Categorie::create( [
+                'nom_categorie' => $request->nom_categorie,
+                'genre_id' => $request->genre_id
+            ] );
+            return to_route( 'categories.index' );
+        } catch ( ValidationException $e ) {
+            return response()->json( [ 'errors' => $e->errors() ], 422 );
+        }
     }
 
     /**
@@ -47,7 +64,9 @@ class CategorieController extends Controller {
     */
 
     public function edit( string $id ) {
-        return Inertia::render( 'Categories/Edit' );
+        $categorie = Categorie::findOrFail($id);
+        $genres = Genre::all();
+        return Inertia::render( 'Categories/Edit' , compact('categorie', 'genres') );
     }
 
     /**
@@ -55,7 +74,23 @@ class CategorieController extends Controller {
     */
 
     public function update( Request $request, string $id ) {
-        //
+        $cat = Categorie::findOrFail( $id );
+        try {
+            $request->validate( [
+                'nom_categorie' => 'required',
+                'genre_id' => 'required',
+            ], [
+                'nom_categorie.required' => 'this field is required',
+                'genre_id.required' => 'this field is required',
+            ] );
+            $cat->update( [
+                'nom_categorie' => $request->nom_categorie,
+                'genre_id' => $request->genre_id
+            ] );
+            return to_route( 'categories.index' );
+        } catch ( ValidationException $e ) {
+            return response()->json( [ 'errors' => $e->errors() ], 422 );
+        }
     }
 
     /**
@@ -63,6 +98,8 @@ class CategorieController extends Controller {
     */
 
     public function destroy( string $id ) {
-        //
+        $c = Categorie::findOrFail( $id );
+        $c->delete();
+        return to_route('categories.index');
     }
 }
