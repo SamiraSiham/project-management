@@ -32,9 +32,9 @@ console.log(props.users);
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center">
                     <h3>Liste of Users</h3>
-                    <Link :href="route('user.create')">
+                    <!-- <Link :href="route('user.create')">
                         <button class="btn bg-accent text-white">Create</button>
-                    </Link>
+                    </Link> -->
                 </div>
                 <table class="w-full">
                     <thead class="bg-gray-50">
