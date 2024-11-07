@@ -1,5 +1,5 @@
 <template>
-    <form action="" class="max-md:w-full max-md:flex justify-center md:mx-3">
+    <form action="" class="max-md:w-full max-md:flex justify-center">
         <div class="relative flex items-center text-gray focus-within:text-accent">
             <i class="fa-solid fa-magnifying-glass absolute ml-4 pointer-events-none"></i>
             <input

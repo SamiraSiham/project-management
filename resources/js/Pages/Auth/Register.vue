@@ -7,7 +7,9 @@ import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const form = useForm({
-    name: "",
+    first_name: "",
+    last_name: "",
+    phone_number: "",
     email: "",
     password: "",
     password_confirmation: "",
@@ -24,14 +26,15 @@ const submit = () => {
     <GuestLayout>
         <Head title="Register" />
         <form @submit.prevent="submit" class="space-y-6">
+            
             <div class="space-y-1">
-                <label for="prenom" class="block text-sm font-medium text-gray"
+                <label for="first_name" class="block text-sm font-medium text-gray"
                     >First Name</label
                 >
                 <input
-                    v-model="prenom"
+                    v-model="form.first_name"
                     type="text"
-                    id="prenom"
+                    id="first_name"
                     required
                     class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
                 />
@@ -41,9 +44,9 @@ const submit = () => {
                     >Last Name</label
                 >
                 <input
-                    v-model="nom"
+                    v-model="form.last_name"
                     type="text"
-                    id="nom"
+                    id="last_name"
                     required
                     class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
                 />
@@ -55,9 +58,9 @@ const submit = () => {
                     >Phone Number</label
                 >
                 <input
-                    v-model="telephone"
+                    v-model="form.phone_number"
                     type="text"
-                    id="telephone"
+                    id="phone_number"
                     required
                     class="block w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
                 />
@@ -67,7 +70,7 @@ const submit = () => {
                     >Email</label
                 >
                 <input
-                    v-model="email"
+                    v-model="form.email"
                     type="email"
                     id="email"
                     required
@@ -81,7 +84,7 @@ const submit = () => {
                     >Password</label
                 >
                 <input
-                    v-model="password"
+                    v-model="form.password"
                     type="password"
                     id="password"
                     required
@@ -95,7 +98,7 @@ const submit = () => {
                     >Password Confirmation</label
                 >
                 <input
-                    v-model="password_confirmation"
+                    v-model="form.password_confirmation"
                     type="password"
                     id="password_confirmation"
                     required

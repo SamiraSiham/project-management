@@ -1,4 +1,20 @@
+<script setup>
+import { defineProps, onMounted } from 'vue';
+import { useForm, Head, Link } from '@inertiajs/vue3';
+const form = useForm({
+  title: null,
+  author: null,
+  price: null,
+  categorie_id: null,
+  date_publication: null,
+})
+const data = defineProps({
+    data: Object
+})
+onMounted(()=>{console.log(data?.data)})
+</script>
 <template>
+
     <div class="bg-white  m-20">
       <div class="flex items-start justify-between p-5 border-b rounded-t">
         <h3 class="text-xl font-semibold">Ajouter une fiche</h3>
@@ -138,3 +154,7 @@
   @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css";
   </style>
   
+
+    
+
+
