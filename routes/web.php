@@ -1,6 +1,7 @@
 <?php
 
 use Inertia\Inertia;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\RoleController;
@@ -11,7 +12,9 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PermissionController;
 
 Route::get('/', function () {
+    $data = Categorie::with('genre')->orderBy('genre_id')->get();
     return Inertia::render('Welcome', [
+        'data' => $data,
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -26,15 +29,6 @@ Route::get('about', function () {
 Route::get('/contact', function(){
     return Inertia::render('ContactUs');
 })->name('contact');
-
-// Route::get('/list', function(){
-//     return Inertia::render('List');
-// })->name('list');
-
-// Route::get('/add-fiche', function(){
-//     return Inertia::render('addfiche');
-// })->name('add-fiche');
-
 
 Route::middleware('auth')->group(function(){
     Route::resource('genres', GenreController::class);
