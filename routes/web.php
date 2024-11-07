@@ -10,6 +10,8 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\UserController;
+
 
 Route::get('/', function () {
     $data = Categorie::with('genre')->orderBy('genre_id')->get();
@@ -47,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('permission',PermissionController::class)->names(['index'=>'Permissions']);
     Route::resource('role',RoleController::class);
+    Route::resource('user',UserController::class);
 });
 
 require __DIR__.'/auth.php';
