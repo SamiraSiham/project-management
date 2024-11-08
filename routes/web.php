@@ -1,20 +1,23 @@
 <?php
 
 use Inertia\Inertia;
+use App\Models\Genre;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FicheController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
-    $data = Categorie::with('genre')->orderBy('genre_id')->get();
+    // $data = Categorie::with('genre')->orderBy('genre_id')->get();
+    $data = Genre::with('categories')->get();
     return Inertia::render('Welcome', [
         'data' => $data,
         'canLogin' => Route::has('login'),
@@ -50,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('permission',PermissionController::class)->names(['index'=>'Permissions']);
     Route::resource('role',RoleController::class);
     Route::resource('user',UserController::class);
+    Route::resource('listing',ListingController::class);
 });
 
 require __DIR__.'/auth.php';

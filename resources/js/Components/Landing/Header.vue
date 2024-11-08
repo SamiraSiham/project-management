@@ -77,7 +77,7 @@ onMounted(()=>{
                             >Contact Us</Link
                         >
                     </li>
-                    <li class="relative">
+                    <li class="relative" v-for="i in props.data" :key="i.id">
                         <Dropdown align="right" width="48">
                             <template #trigger>
                                 <span class="inline-flex rounded-md">
@@ -85,7 +85,7 @@ onMounted(()=>{
                                         type="button"
                                         class="inline-flex items-center rounded-md border border-transparent bg-white py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                     >
-                                        Courses
+                                        <!-- Courses --> {{ i.genre }}
 
                                         <svg
                                             class="-me-0.5 ms-2 h-4 w-4"
@@ -104,7 +104,14 @@ onMounted(()=>{
                             </template>
 
                             <template #content>
-                                <DropdownLink :href="route('profile.edit')">
+                                <DropdownLink class="text-center" :href="route('profile.edit')">
+                                    {{ i.genre }}
+                                </DropdownLink>
+                                <hr/>
+                                <DropdownLink v-for="j in i.categories" :key="j.id" :href="route('profile.edit')">
+                                    {{ j.nom_categorie }}
+                                </DropdownLink>
+                                <!-- <DropdownLink :href="route('profile.edit')">
                                     General knowledge
                                 </DropdownLink>
                                 <DropdownLink :href="route('profile.edit')">
@@ -112,11 +119,11 @@ onMounted(()=>{
                                 </DropdownLink>
                                 <DropdownLink :href="route('profile.edit')">
                                     Live courses
-                                </DropdownLink>
+                                </DropdownLink> -->
                             </template>
                         </Dropdown>
                     </li>
-                    <li class="relative">
+                    <!-- <li class="relative">
                         <Dropdown align="right" width="48">
                             <template #trigger>
                                 <span class="inline-flex rounded-md">
@@ -200,7 +207,7 @@ onMounted(()=>{
                                 </DropdownLink>
                             </template>
                         </Dropdown>
-                    </li>
+                    </li> -->
                     <li><SearchBar /></li>
                 </ul>
 
