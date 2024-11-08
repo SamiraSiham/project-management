@@ -10,8 +10,8 @@ const props = defineProps({
 onMounted(() => {
     console.log(props.data);
 });
-function addGenre(){
-    form.post(route('genres.store'));
+function addGenre() {
+    form.post(route("genres.store"));
     form.genre = "";
 }
 function deleteGenre(id) {
@@ -61,12 +61,14 @@ const form = useForm({
                                     class="px-3 py-4 text-right w-[90%] flex justify-between"
                                 >
                                     <Link
+                                        v-if="$hasPermission('Update Genre')"
                                         :href="route('genres.edit', i.id)"
                                         class="font-medium text-blue-600 hover:underline"
                                     >
                                         Edit
                                     </Link>
                                     <span
+                                        v-if="$hasPermission('Delete Genre')"
                                         @click="deleteGenre(i.id)"
                                         class="font-medium text-red-600 hover:underline cursor-pointer"
                                     >
@@ -101,7 +103,10 @@ const form = useForm({
                                 required
                                 v-model="form.genre"
                             />
-                            <InputError class="mt-2" :message="form.errors.genre" />
+                            <InputError
+                                class="mt-2"
+                                :message="form.errors.genre"
+                            />
                         </div>
                         <div class="flex gap-x-2">
                             <button

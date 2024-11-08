@@ -7,12 +7,23 @@ use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class RoleController extends Controller
+class RoleController extends Controller implements HasMiddleware
 {
     /**
      * Display a listing of the resource.
      */
+    public static function middleware(): array 
+    {
+        return [
+            new Middleware('permission:Create role',only:['create']),
+            new Middleware('permission:Read role',only:['index']),
+            new Middleware('permission:Update role',only:['edit']),
+            new Middleware('permission:Delete role',only:['destroy']),
+        ];
+    }
     public function index()
     {
         $roles = Role::get();
