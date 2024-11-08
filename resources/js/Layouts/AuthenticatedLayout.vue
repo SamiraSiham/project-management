@@ -80,9 +80,10 @@ const showingNavigationDropdown = ref(false);
                                 </NavLink>
                                 <NavLink
                                     v-if="
-                                       ( $hasRole('Admin') ||
-                                        $hasRole('Moderator') ||
-                                        $hasRole('Guest')) && $hasPermission('Read Category')
+                                        ($hasRole('Admin') ||
+                                            $hasRole('Moderator') ||
+                                            $hasRole('Guest')) &&
+                                        $hasPermission('Read Category')
                                     "
                                     :href="route('categories.index')"
                                     :active="
@@ -94,7 +95,8 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink
                                     v-if="
                                         ($hasRole('Admin') ||
-                                        $hasRole('Moderator'))&& $hasPermission('Read Genre')
+                                            $hasRole('Moderator')) &&
+                                        $hasPermission('Read Genre')
                                     "
                                     :href="route('genres.index')"
                                     :active="route().current('genres.index')"
@@ -267,7 +269,11 @@ const showingNavigationDropdown = ref(false);
                             <div class="text-base font-medium text-gray-800">
                                 {{ $page.props.auth.user.first_name }}
                                 {{ $page.props.auth.user.last_name }}
-                                ({{ $page.props.auth.user.roles[0] }})
+                                <span
+                                    v-for="role in $page.props.auth.user.roles"
+                                >
+                                    ({{ role.name }})
+                                </span>
                             </div>
                             <div class="text-sm font-medium text-gray-500">
                                 {{ $page.props.auth.user.email }}
