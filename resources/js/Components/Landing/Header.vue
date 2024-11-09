@@ -1,12 +1,19 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import SearchBar from "../SearchBar.vue";
 
 const open = ref(false);
 const toggleMenu = () => {
     open.value = !open.value;
 };
+const props = defineProps({
+    data : Object
+});
+
+onMounted(()=>{
+    console.log(props.data);
+})
 </script>
 
 <template>
