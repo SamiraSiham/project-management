@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Role;
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public static function middleware(): array 
+    {
+        return [
+            new Middleware('permission:Read user',only:['index']),
+            new Middleware('permission:Update user',only:['edit']),
+        ];
+    }
     public function index()
     {
         $users = User::all();

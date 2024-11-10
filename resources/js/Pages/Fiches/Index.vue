@@ -57,6 +57,7 @@ function deleteFiche(id) {
                             <!-- Add Button -->
                             <div>
                                 <Link
+                                    v-if="$hasPermission('Create fiches')"
                                     :href="route('fiches.create')"
                                     class="rounded-md bg-accent border text-white hover:bg-white hover:text-accent hover:border-accent px-4 py-1 text-lg"
                                 >
@@ -124,11 +125,15 @@ function deleteFiche(id) {
                                     </td>
                                     <td class="px-6 py-4">
                                         <Link
+                                            v-if="
+                                                $hasPermission('Update fiches')
+                                            "
                                             :href="route('fiches.edit', i.id)"
                                             class="font-medium text-blue-600 hover:underline"
                                             >Edit</Link
                                         >
                                         <a
+                                            v-if="$hasPermission('Read fiches')"
                                             :href="route('fiches.show', i.id)"
                                             class="font-medium text-yellow-600 hover:underline ps-4"
                                             target="_blank"
@@ -136,6 +141,9 @@ function deleteFiche(id) {
                                             >View</a
                                         >
                                         <span
+                                            v-if="
+                                                $hasPermission('Delete fiches')
+                                            "
                                             @click="deleteFiche(i.id)"
                                             class="font-medium text-red-600 hover:underline ps-4 cursor-pointer"
                                             >Delete</span

@@ -6,12 +6,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class PermissionController extends Controller
+class PermissionController extends Controller implements HasMiddleware
 {
     /**
      * Display a listing of the resource.
      */
+    public static function middleware(): array 
+    {
+        return [
+            new Middleware('permission:Create permission',only:['create']),
+            new Middleware('permission:Read permission',only:['index']),
+            new Middleware('permission:Update permission',only:['edit']),
+            new Middleware('permission:Delete permission',only:['destroy']),
+        ];
+    }
     public function index()
     {
         $permissions = Permission::all();

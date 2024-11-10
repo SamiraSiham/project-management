@@ -37,36 +37,67 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        $hasRole('Admin') &&
+                                        $hasPermission('Read permission')
+                                    "
                                     :href="route('Permissions')"
                                     :active="route().current('Permissions')"
                                 >
                                     Permissions
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        $hasRole('Admin') &&
+                                        $hasPermission('Read role')
+                                    "
                                     :href="route('role.index')"
                                     :active="route().current('role.index')"
                                 >
                                     Roles
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        $hasRole('Admin') &&
+                                        $hasPermission('Read user')
+                                    "
                                     :href="route('user.index')"
                                     :active="route().current('user.index')"
                                 >
                                     Users
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        ($hasRole('Admin') ||
+                                            $hasRole('Moderator') ||
+                                            $hasRole('Guest')) &&
+                                        $hasPermission('Read fiches')
+                                    "
                                     :href="route('fiches.index')"
                                     :active="route().current('fiches.index')"
                                 >
                                     Fiches
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        ($hasRole('Admin') ||
+                                            $hasRole('Moderator') ||
+                                            $hasRole('Guest')) &&
+                                        $hasPermission('Read Category')
+                                    "
                                     :href="route('categories.index')"
-                                    :active="route().current('categories.index')"
+                                    :active="
+                                        route().current('categories.index')
+                                    "
                                 >
                                     Categories
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        ($hasRole('Admin') ||
+                                            $hasRole('Moderator')) &&
+                                        $hasPermission('Read Genre')
+                                    "
                                     :href="route('genres.index')"
                                     :active="route().current('genres.index')"
                                 >
@@ -93,6 +124,12 @@ const showingNavigationDropdown = ref(false);
                                                     $page.props.auth.user
                                                         .last_name
                                                 }}
+                                                <span
+                                                    v-for="role in $page.props
+                                                        .auth.user.roles"
+                                                >
+                                                    ({{ role.name }})
+                                                </span>
 
                                                 <svg
                                                     class="-me-0.5 ms-2 h-4 w-4"
@@ -188,6 +225,7 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
 
                         <ResponsiveNavLink
+                            v-if="$hasRole('Admin')"
                             :href="route('Permissions')"
                             :active="route().current('Permissions')"
                         >
@@ -195,6 +233,7 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
 
                         <ResponsiveNavLink
+                            v-if="$hasRole('Admin')"
                             :href="route('role.index')"
                             :active="route().current('role.index')"
                         >
@@ -202,16 +241,25 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
 
                         <ResponsiveNavLink
+                            v-if="$hasRole('Admin')"
                             :href="route('fiches.index')"
                             :active="route().current('fiches.index')"
                         >
                             Fiches
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
+                            v-if="$hasRole('Admin')"
                             :href="route('categories.index')"
                             :active="route().current('categories.index')"
                         >
                             Categories
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            v-if="$hasRole('Admin')"
+                            :href="route('genres.index')"
+                            :active="route().current('genres.index')"
+                        >
+                            Genres
                         </ResponsiveNavLink>
                     </div>
 
@@ -220,6 +268,12 @@ const showingNavigationDropdown = ref(false);
                         <div class="px-4">
                             <div class="text-base font-medium text-gray-800">
                                 {{ $page.props.auth.user.first_name }}
+                                {{ $page.props.auth.user.last_name }}
+                                <span
+                                    v-for="role in $page.props.auth.user.roles"
+                                >
+                                    ({{ role.name }})
+                                </span>
                             </div>
                             <div class="text-sm font-medium text-gray-500">
                                 {{ $page.props.auth.user.email }}

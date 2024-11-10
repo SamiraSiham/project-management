@@ -8,12 +8,23 @@ use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Validation\ValidationException;
 
-class FicheController extends Controller {
+class FicheController extends Controller implements HasMiddleware {
     /**
     * Display a listing of the resource.
     */
-
+    public static function middleware(): array 
+    {
+        return [
+            new Middleware('permission:Create fiches',only:['create']),
+            new Middleware('permission:Read fiches',only:['index']),
+            new Middleware('permission:Update fiches',only:['edit']),
+            new Middleware('permission:Delete fiches',only:['destroy']),
+        ];
+    }
     public function index() {
         $data = Fiche::with( 'category' )->get();
         // return response()->json( [ 'data' => $data ] );

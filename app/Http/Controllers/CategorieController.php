@@ -6,13 +6,25 @@ use Inertia\Inertia;
 use App\Models\Genre;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
-class CategorieController extends Controller {
+class CategorieController extends Controller implements HasMiddleware
+{
     /**
     * Display a listing of the resource.
     */
-
+    public static function middleware(): array 
+    {
+        return [
+            new Middleware('permission:Create Category',only:['create']),
+            new Middleware('permission:Read Category',only:['index']),
+            new Middleware('permission:Update Category',only:['edit']),
+            new Middleware('permission:Delete Category',only:['delete']),
+        ];
+    }
     public function index() {
         $data = Categorie::with('genre')->get();
         return Inertia::render( 'Categories/Index', compact( 'data' ) );

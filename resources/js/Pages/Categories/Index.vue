@@ -32,6 +32,7 @@ function deleteCategorie(id) {
                         Categories
                     </caption>
                     <Link
+                        v-if="$hasPermission('Create Category')"
                         class="px-3 py-2 bg-accent text-white rounded-lg border-2 hover:border-accent hover:bg-white hover:text-accent"
                         :href="route('categories.create')"
                     >
@@ -43,7 +44,10 @@ function deleteCategorie(id) {
                         <tr>
                             <th scope="col" class="px-6 py-3">Nom Categorie</th>
                             <th scope="col" class="px-6 py-3">Genre</th>
-                            <th scope="col" class="px-6 py-3">
+                            <th
+                                scope="col"
+                                class="px-6 py-3"
+                            >
                                 <span class="">Actions</span>
                             </th>
                         </tr>
@@ -56,16 +60,18 @@ function deleteCategorie(id) {
                         >
                             <td class="px-6 py-4">{{ i.nom_categorie }}</td>
                             <td class="px-6 py-4">{{ i.genre.genre }}</td>
-                            <td
+                            <td 
                                 class="px-6 py-4 text-right flex justify-between"
                             >
                                 <Link
+                                    v-if="$hasPermission('Update Category')"
                                     :href="route('categories.edit', i.id)"
                                     class="font-medium text-blue-600 hover:underline"
                                 >
                                     Edit
                                 </Link>
                                 <span
+                                    v-if="$hasPermission('Delete Category')"
                                     @click="deleteCategorie(i.id)"
                                     class="font-medium text-red-600 hover:underline cursor-pointer"
                                 >

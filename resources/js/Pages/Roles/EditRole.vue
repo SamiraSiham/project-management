@@ -16,10 +16,10 @@ const props = defineProps({
         required: true,
     },
 });
-console.log(props.permissions);
-console.log(
-    props.hasPermissions.includes(props.permissions[0].name) ? "yes" : "no"
-);
+// console.log(props.permissions);
+// console.log(
+//     props.hasPermissions.includes(props.permissions[0].name) ? "yes" : "no"
+// );
 
 const form = useForm({
     name: props.role.name,

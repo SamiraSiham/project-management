@@ -5,13 +5,24 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 
-class GenreController extends Controller {
+class GenreController extends Controller implements HasMiddleware {
     /**
     * Display a listing of the resource.
     */
-
+    public static function middleware(): array 
+    {
+        return [
+            new Middleware('permission:Create Genre',only:['create']),
+            new Middleware('permission:Read Genre',only:['index']),
+            new Middleware('permission:Update Genre',only:['edit']),
+            new Middleware('permission:Delete Genre',only:['destroy']),
+        ];
+    }
     public function index() {
         $data = Genre::all();
         return Inertia::render( 'Genres/Index', compact( 'data' ) );
