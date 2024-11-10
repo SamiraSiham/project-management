@@ -4,17 +4,17 @@ import { ref, onMounted } from "vue";
 import SearchBar from "../SearchBar.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
+
 const open = ref(false);
+const openCategory = ref(false);
+const selectedItem = ref(null)
 const toggleMenu = () => {
     open.value = !open.value;
 };
 const props = defineProps({
-    data : Object
+    data: Object
 });
 
-onMounted(()=>{
-    console.log(props.data);
-})
 </script>
 
 <template>
@@ -85,7 +85,8 @@ onMounted(()=>{
                                         type="button"
                                         class="inline-flex items-center rounded-md border border-transparent bg-white py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                     >
-                                        <!-- Courses --> {{ i.genre }}
+                                        <!-- Courses -->
+                                        {{ i.genre }}
 
                                         <svg
                                             class="-me-0.5 ms-2 h-4 w-4"
@@ -104,110 +105,23 @@ onMounted(()=>{
                             </template>
 
                             <template #content>
-                                <DropdownLink class="text-center" :href="route('profile.edit')">
+                                <DropdownLink
+                                    class="text-center"
+                                    :href="route('profile.edit')"
+                                >
                                     {{ i.genre }}
                                 </DropdownLink>
-                                <hr/>
-                                <DropdownLink v-for="j in i.categories" :key="j.id" :href="route('profile.edit')">
+                                <hr />
+                                <DropdownLink
+                                    v-for="j in i.categories"
+                                    :key="j.id"
+                                    :href="route('profile.edit')"
+                                >
                                     {{ j.nom_categorie }}
                                 </DropdownLink>
-                                <!-- <DropdownLink :href="route('profile.edit')">
-                                    General knowledge
-                                </DropdownLink>
-                                <DropdownLink :href="route('profile.edit')">
-                                    Academics
-                                </DropdownLink>
-                                <DropdownLink :href="route('profile.edit')">
-                                    Live courses
-                                </DropdownLink> -->
                             </template>
                         </Dropdown>
                     </li>
-                    <!-- <li class="relative">
-                        <Dropdown align="right" width="48">
-                            <template #trigger>
-                                <span class="inline-flex rounded-md">
-                                    <button
-                                        type="button"
-                                        class="inline-flex items-center rounded-md border border-transparent bg-white py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
-                                    >
-                                        Tools
-
-                                        <svg
-                                            class="-me-0.5 ms-2 h-4 w-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd"
-                                            />
-                                        </svg>
-                                    </button>
-                                </span>
-                            </template>
-
-                            <template #content>
-                                <DropdownLink :href="route('profile.edit')">
-                                    Etude de marché
-                                </DropdownLink>
-                                <DropdownLink :href="route('profile.edit')">
-                                    Marketing
-                                </DropdownLink>
-                                <DropdownLink :href="route('profile.edit')">
-                                    Management Stratégique
-                                </DropdownLink>
-                                <DropdownLink :href="route('profile.edit')">
-                                    Finance
-                                </DropdownLink>
-                                <DropdownLink :href="route('profile.edit')">
-                                    RH et direction générale
-                                </DropdownLink>
-                            </template>
-                        </Dropdown>
-                    </li>
-
-                    <li class="relative">
-                        <Dropdown align="right" width="48">
-                            <template #trigger>
-                                <span class="inline-flex rounded-md">
-                                    <button
-                                        type="button"
-                                        class="inline-flex items-center rounded-md border border-transparent bg-white py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
-                                    >
-                                        Research
-
-                                        <svg
-                                            class="-me-0.5 ms-2 h-4 w-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd"
-                                            />
-                                        </svg>
-                                    </button>
-                                </span>
-                            </template>
-
-                            <template #content>
-                                <DropdownLink :href="route('profile.edit')">
-                                    Moroccan Context
-                                </DropdownLink>
-                                <DropdownLink :href="route('profile.edit')">
-                                    International Context
-                                </DropdownLink>
-                                <DropdownLink :href="route('profile.edit')">
-                                    Applied Researches
-                                </DropdownLink>
-                            </template>
-                        </Dropdown>
-                    </li> -->
                     <li><SearchBar /></li>
                 </ul>
 
@@ -222,7 +136,7 @@ onMounted(()=>{
 
                 <!-- Menu mobile -->
                 <ul
-                    class="md:hidden fixed inset-0 bg-white flex flex-col items-center py-24 gap-y-2 transition-transform duration-500"
+                    class="md:hidden fixed inset-0 bg-white flex flex-col items-center py-2 gap-y-0 transition-transform duration-500 min-h-screen overflow-y-auto"
                     :class="open ? 'translate-x-0' : '-translate-x-full'"
                     style="z-index: 100"
                 >
@@ -240,7 +154,7 @@ onMounted(()=>{
                     <li class="w-full flex justify-center">
                         <Link
                             href="/"
-                            class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
+                            class="w-full py-5 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
                         >
                             <i class="fa-solid fa-house fa-lg"></i> Home
                         </Link>
@@ -248,7 +162,7 @@ onMounted(()=>{
                     <li class="w-full flex justify-center">
                         <Link
                             :href="route('about')"
-                            class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
+                            class="w-full py-5 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
                         >
                             <i class="fa-regular fa-address-card fa-lg"></i> A
                             propos
@@ -257,13 +171,58 @@ onMounted(()=>{
                     <li class="w-full flex justify-center">
                         <Link
                             :href="route('contact')"
-                            class="w-full py-7 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
+                            class="w-full py-5 px-4 flex items-center gap-x-4 text-lg hover:decoration-accent hover:text-accent"
                         >
                             <i
                                 class="fa-solid fa-mobile-screen-button fa-lg"
                             ></i>
                             Contact
                         </Link>
+                    </li>
+                    <li class="relative py-5 w-full px-4 text-center" v-for="i in props.data" :key="i.id">
+                        <Dropdown align="right" width="48">
+                            <template #trigger>
+                                <span class="inline-flex rounded-md">
+                                    <button
+                                        type="button"
+                                        class="inline-flex items-center rounded-md border border-transparent bg-white py-2 font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                    >
+                                        <!-- Courses -->
+                                        {{ i.genre }}
+
+                                        <svg
+                                            class="-me-0.5 ms-2 h-4 w-4"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+                                </span>
+                            </template>
+
+                            <template #content>
+                                <DropdownLink
+                                    class="text-center"
+                                    :href="route('profile.edit')"
+                                >
+                                    {{ i.genre }}
+                                </DropdownLink>
+                                <hr />
+                                <DropdownLink
+                                    v-for="j in i.categories"
+                                    :key="j.id"
+                                    :href="route('profile.edit')"
+                                >
+                                    {{ j.nom_categorie }}
+                                </DropdownLink>
+                            </template>
+                        </Dropdown>
                     </li>
                     <li class="flex w-full items-center">
                         <SearchBar />

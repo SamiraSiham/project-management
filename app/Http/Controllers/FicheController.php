@@ -74,16 +74,11 @@ class FicheController extends Controller {
 
     public function show( string $id ) {
         $fiche = Fiche::findOrFail( $id )->file_path;
-        // $url = Storage::url( $fiche );
-        // // $content = Storage::get($fiche);
-        // // dd( $url );
-        // return redirect($url);
         if (!Storage::disk('public')->exists($fiche)) {
             abort(404); // Return a 404 error if the file does not exist
         }else{
             $path = Storage::disk('public')->path($fiche);
             return Response::file($path);
-            // dd($path);
         }
     }
 

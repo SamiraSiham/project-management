@@ -2,7 +2,7 @@
 import { Head, Link } from "@inertiajs/vue3";
 import Header from "@/Components/Landing/Header.vue";
 import Hero from "@/Components/Landing/Hero.vue";
-import List from "./List.vue";
+import Index from "./Listing/Index.vue";
 // import Sidebar from "@/Components/Sidebar.vue";
 import Footer from "@/Components/Landing/Footer.vue";
 import { onMounted} from "vue";
@@ -11,6 +11,7 @@ const props = defineProps({
     data : {
         type : Object
     },
+    fiches : Object,
     canLogin: {
         type: Boolean,
     },
@@ -27,9 +28,9 @@ const props = defineProps({
     },
 });
 
-// onMounted(() => {
-//     console.log(props.data);
-// });
+// onMounted(()=>{
+//     console.log(props.fiches);
+// })
 </script>
 
 <template>
@@ -40,7 +41,7 @@ const props = defineProps({
         <div class="flex flex-col max-md:max-w-[100%]">
             <Header :data="props.data" />
             <Hero />
-            <List />
+            <Index :fiches="props.fiches" />
             <Footer />
         </div>
         <!-- </div> -->

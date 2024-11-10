@@ -8,14 +8,7 @@
                 class="p-3 py-6 bg-purple-50 text-center 
                 transform duration-500 hover:-translate-y-2 cursor-pointer"
             >
-                <div class="absolute right-0 top-0 h-16 w-16">
-                    <div
-                        class="absolute transform rotate-30 bg-green-600 text-center text-white 
-                        font-semibold p-1 left-[-35px] top-[2px] w-[100px]"
-                    >
-                        20% off
-                    </div>
-                </div>
+                
                 <h1 class="text-xl my-5 font-bold">Savoir Communiquer</h1>
                 <img
                     src="https://lespratiquesdumanager.com/5451-home_default/savoir-communiquer.jpg"
