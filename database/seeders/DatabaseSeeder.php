@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(GenreSeeder::class);
         $this->call(CategorieSeeder::class);
-        $this->call(FicheSeeder::class);
+        // $this->call(FicheSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(PermissionsSeeder::class);
         $this->call(Role_Get_Permissions::class);

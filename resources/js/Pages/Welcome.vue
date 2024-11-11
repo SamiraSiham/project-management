@@ -7,6 +7,7 @@ import Index from "./Listing/Index.vue";
 import Footer from "@/Components/Landing/Footer.vue";
 import { onMounted} from "vue";
 
+
 const props = defineProps({
     data : {
         type : Object

@@ -2,7 +2,7 @@
     import { Link } from '@inertiajs/vue3';
 </script>
 <template>
-    <section class="flex justify-center items-center w-full px-3">
+    <section class="flex justify-center items-center w-full px-3 mt-8">
         <div
             class="flex flex-row max-md:flex-col-reverse items-center gap-10 max-md:mt-3"
         >
@@ -13,7 +13,7 @@
                 >
                     A simple Project Manager
                 </h2>
-                <p class="text-gray text-md max-md:text-center text-left mb-6">
+                <p class="text-md max-md:text-center text-left mb-6">
                     Lorem ipsum odor amet, consectetuer adipiscing elit. Sem
                     orci faucibus augue molestie facilisis eget sapien tristique
                     aptent. Phasellus sit ligula natoque at efficitur varius

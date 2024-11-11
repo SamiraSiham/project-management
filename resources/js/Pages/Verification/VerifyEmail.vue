@@ -1,4 +1,5 @@
 <script setup>
+import Alert from "@/Components/Alert.vue";
 import { useForm } from "@inertiajs/vue3";
 import {Head, Link, router} from "@inertiajs/vue3";
 import { onMounted } from "vue";
@@ -14,7 +15,7 @@ onMounted(()=>{
     console.log(data)
 })
 function submit() {
-  router.post('/download',form);
+  router.post('/download', form);
 }
 </script>
 <template>
@@ -81,6 +82,7 @@ function submit() {
             </form>
         </div>
     </div>
+    <Alert/>
 </template>
 
 

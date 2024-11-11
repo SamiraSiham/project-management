@@ -43,15 +43,20 @@ class DownloadController extends Controller {
             $fiche = Fiche::findOrFail( $request->file_id );
             $fiche_path = $request->file_path;
             $url = public_path( '/storage/'.$fiche_path );
-            // $archive = Archive::create( [
-            //     'first_name' => $request->first_name,
-            //     'last_name' => $request->last_name,
-            //     'email' => $request->email,
-            //     'fiche_id' => $request->file_id,
-            //     'download_date' => Carbon::now()->format( 'Y-m-d' )
-            // ] );
-            // dd(response()->file($url));
-            
+            $archive = Archive::create( [
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'fiche_id' => $request->file_id,
+                'download_date' => Carbon::now()->format( 'Y-m-d' )
+            ] );
+            // dd( response()->file( $url ) );
+            session()->flash('alert', [
+                'title' => 'Thank you!',
+                // 'text' => 'Your data has been saved successfully.',
+                'html' => "<a href=$request->file_id/edit class='text-blue-500 hover:underline'>Download your file</a>",
+                'icon' => 'success'
+            ]);
         }
     }
 
@@ -83,10 +88,10 @@ class DownloadController extends Controller {
     */
 
     public function edit( $id ) {
-        // $fiche = Fiche::findOrFail( $id );
-        // $fiche_path = $fiche->file_path;
-        // $url = public_path( '/storage/'.$fiche_path );
-        // // return response()->download( $url );
+        // dd($id);
+        $fiche_path = Fiche::findOrFail( $id )->file_path;
+        $url = public_path( 'storage/'.$fiche_path );
+        return response()->download( $url );
         // dd( $url );
     }
 

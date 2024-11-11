@@ -26,7 +26,8 @@ class FicheController extends Controller implements HasMiddleware {
         ];
     }
     public function index() {
-        $data = Fiche::with( 'category' )->get();
+        // $data = Fiche::with( 'category' )->get();
+        $data = Fiche::with( 'category' )->oldest()->paginate(10);
         // return response()->json( [ 'data' => $data ] );
         return Inertia::render( 'Fiches/Index', compact( 'data' ) );
     }

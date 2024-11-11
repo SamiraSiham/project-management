@@ -15,15 +15,15 @@ class GenreSeeder extends Seeder {
         DB::table( 'genres' )->insert(
             [ [
                 'id' => 1,
-                'genre' => 'Management Courses'
+                'genre' => 'Courses'
             ],
             [
                 'id' => 2,
-                'genre' => 'Management Tools'
+                'genre' => 'Tools'
             ],
             [
                 'id' => 3,
-                'genre' => 'Management Research'
+                'genre' => 'Research'
             ], ]
         );
     }
