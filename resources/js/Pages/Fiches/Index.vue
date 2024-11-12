@@ -2,9 +2,13 @@
 import { defineProps, onMounted } from "vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import Pagination from "@/Components/Pagination.vue";
 const data = defineProps({
     data: Object,
 });
+onMounted(()=>{
+    console.log(data.data)
+})
 function deleteFiche(id) {
     if (confirm("Are you sure you want to delete this sheet?")) {
         router.delete(`/fiches/${id}`, {
@@ -96,19 +100,10 @@ function deleteFiche(id) {
                             <tbody>
                                 <tr
                                     class="bg-white border-b"
-                                    v-for="i in data.data"
+                                    v-for="i in data.data.data"
                                     :key="i.id"
                                 >
-                                    <!-- <td class="w-4 p-4">
-                                    <div class="flex items-center">
-                                        <input
-                                            id="checkbox-table-search-1"
-                                            type="checkbox"
-                                            class="w-4 h-4 text-accent rounded focus:ring-accent focus:ring-2"
-                                        />
-                                        
-                                    </div>
-                                </td> -->
+                                    
                                     <th
                                         scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
@@ -152,6 +147,9 @@ function deleteFiche(id) {
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="mt-10 flex justify-center">
+                            <Pagination :links="data.data.links"/>
+                        </div>
                     </div>
                 </div>
             </div>

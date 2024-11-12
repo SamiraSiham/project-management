@@ -20,7 +20,7 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('/')">
                                     <!-- class="block h-9 w-auto fill-current text-gray-800" -->
                                     <ApplicationLogo />
                                 </Link>
@@ -62,7 +62,7 @@ const showingNavigationDropdown = ref(false);
                                         $hasPermission('Read user')
                                     "
                                     :href="route('user.index')"
-                                    :active="route().current('dashboard')"
+                                    :active="route().current('user.index')"
                                 >
                                     Users
                                 </NavLink>

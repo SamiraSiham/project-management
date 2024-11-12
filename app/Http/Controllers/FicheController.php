@@ -26,7 +26,8 @@ class FicheController extends Controller implements HasMiddleware {
         ];
     }
     public function index() {
-        $data = Fiche::with( 'category' )->get();
+        // $data = Fiche::with( 'category' )->get();
+        $data = Fiche::with( 'category' )->oldest()->paginate(10);
         // return response()->json( [ 'data' => $data ] );
         return Inertia::render( 'Fiches/Index', compact( 'data' ) );
     }
@@ -85,16 +86,11 @@ class FicheController extends Controller implements HasMiddleware {
 
     public function show( string $id ) {
         $fiche = Fiche::findOrFail( $id )->file_path;
-        // $url = Storage::url( $fiche );
-        // // $content = Storage::get($fiche);
-        // // dd( $url );
-        // return redirect($url);
         if (!Storage::disk('public')->exists($fiche)) {
             abort(404); // Return a 404 error if the file does not exist
         }else{
             $path = Storage::disk('public')->path($fiche);
             return Response::file($path);
-            // dd($path);
         }
     }
 

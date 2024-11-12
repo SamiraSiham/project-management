@@ -33,6 +33,7 @@ class HandleInertiaRequests extends Middleware
         $user = Auth::user();
         return [
             ...parent::share($request),
+            'alert' => session('alert'),
             'auth' => [
             'user' => $user ? [
                 'id' => $user->id,
