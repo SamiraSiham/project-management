@@ -94,8 +94,7 @@ const showingNavigationDropdown = ref(false);
                                 </NavLink>
                                 <NavLink
                                     v-if="
-                                        ($hasRole('Admin') ||
-                                            $hasRole('Moderator')) &&
+                                        
                                         $hasPermission('Read Genre')
                                     "
                                     :href="route('genres.index')"

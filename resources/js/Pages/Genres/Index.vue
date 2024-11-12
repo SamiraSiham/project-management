@@ -110,6 +110,7 @@ const form = useForm({
                         </div>
                         <div class="flex gap-x-2">
                             <button
+                            v-if="$hasPermission('Create Genre')"
                                 type="submit"
                                 class="text-white bg-accent hover:bg-white hover:text-accent border border-accent focus:ring-4 focus:outline-none focus:ring-accent font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                             >
