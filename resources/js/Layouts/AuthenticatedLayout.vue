@@ -124,8 +124,8 @@ const showingNavigationDropdown = ref(false);
                                                         .last_name
                                                 }}
                                                 <span
-                                                    v-for="role in $page.props
-                                                        .auth.user.roles"
+                                                    v-for="role in $page.props.auth.user.roles"
+                                                    :key="role.id"
                                                 >
                                                     ({{ role.name }})
                                                 </span>
@@ -269,7 +269,7 @@ const showingNavigationDropdown = ref(false);
                                 {{ $page.props.auth.user.first_name }}
                                 {{ $page.props.auth.user.last_name }}
                                 <span
-                                    v-for="role in $page.props.auth.user.roles"
+                                    v-for="role in $page.props.auth.user.roles" :key="role.id"
                                 >
                                     ({{ role.name }})
                                 </span>
