@@ -27,9 +27,9 @@ class UserFactory extends Factory
             'first_name' => 'admin',
             'last_name' => 'admin',
             'phone_number' => '0600000000',
-            'email' => 'admin@younes.com',
+            'email' => 'younes.lafraxo@gmail.com',
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('hamid'),
+            'password' => static::$password ??= Hash::make('younes@lafraxo2024'),
             'remember_token' => Str::random(10),
         ];
     }
