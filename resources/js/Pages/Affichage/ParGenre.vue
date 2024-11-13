@@ -7,7 +7,7 @@ import Index from "../Listing/Index.vue";
         FicheParGenre : Object,
         fiche_id: Number
     })
-    onMounted(()=>{console.log(props.FicheParGenre.length)})
+    onMounted(()=>{console.log(props.FicheParGenre)})
 </script>
 <template>
     <Header :data="props.data"/>
@@ -20,12 +20,12 @@ import Index from "../Listing/Index.vue";
                 <section
                     v-for="i in props.FicheParGenre"
                     :key="i.id"
-                    class="px-3 py-6 bg-purple-50 text-center transform duration-500"
+                    class="px-3 py-6 bg-purple-50 text-center transform duration-500 h-fit"
                 >
-                    <h1 class="text-2xl my-5 font-bold">{{ i.title }}</h1>
-                    <h2 class="font-semibold mb-5 text-xl">
-                        Category : {{ i.category?.nom_categorie }}
-                    </h2>
+                    <h1 class="text-xl my-5 font-bold">{{ i.title }}</h1>
+                    <!-- <h2 class="font-semibold mb-5 text-xl">
+                        Category : {{ i.nom_categorie }}
+                    </h2> -->
                     <img :src="book_img" alt="" class="" />
 
                     <a

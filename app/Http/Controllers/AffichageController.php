@@ -40,10 +40,6 @@ class AffichageController extends Controller
     public function show(string $genreid)
     {
         $data = Genre::with('categories')->get();
-        // $FicheParGenre = DB::table('fiches')->select('*')->join('categorie', 'fiches.categorie_id', 'categorie.id')
-        // ->join('genres', 'categorie.genre_id', 'genres.id')
-        // ->where('genres.id', '=', $genreid)
-        // ->get();
         $FicheParGenre = Genre::findOrFail($genreid)->fiches;
         // dd($FicheParGenre);
         return Inertia::render('Affichage/ParGenre', compact('FicheParGenre', 'data'));

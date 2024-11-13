@@ -22,10 +22,10 @@ onMounted(() => {
                     :key="i.id"
                     class="px-3 py-6 bg-purple-50 text-center transform duration-500"
                 >
-                    <h1 class="text-2xl my-5 font-bold">{{ i.title }}</h1>
-                    <h2 class="font-semibold mb-5 text-xl">
+                    <h1 class="text-xl my-5 font-bold">{{ i.title }}</h1>
+                    <!-- <h2 class="font-semibold mb-5 text-xl">
                         Category : {{ i.category.nom_categorie }}
-                    </h2>
+                    </h2> -->
                     <img :src="book_img" alt="" class="" />
 
                     <a
