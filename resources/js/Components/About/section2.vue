@@ -6,18 +6,17 @@
             <div class="text-center">
                 <h2
                     class="mb-4 px-4 py-2 md:mx-auto text-3xl font-bold tracking-widest text-black uppercase max-md:text-center">
-                    Why choose us?
+                    Pourquoi "Les Outils Du Manager" ?
                 </h2>
-                <p class="font-heading mt-2 text-3xl leading-8 font-semibold tracking-tight text-accent sm:text-3xl max-md:text-center">
+                <!-- <p class="font-heading mt-2 text-3xl leading-8 font-semibold tracking-tight text-accent sm:text-3xl max-md:text-center">
                     We know tech, we know finance. We are fintech experts.
-                </p>
+                </p> -->
                 <p class="mt-4 text-lg text-gray text-center">
-                    We know how to handle taxation for all the
-                    countried we operate in. We care for our customers and help them manage cashflows.
+                    Management en Action a pour mission de rendre le management accessible et directement applicable. Cet ouvrage offre une vision pratique et structurée des aspects les plus cruciaux du management d'entreprise. Il est conçu pour aider les lecteurs à bâtir, piloter et développer leur entreprise avec des outils éprouvés et des méthodes modernes, et ce, en s'appuyant sur les piliers fondamentaux du management : finance, marketing, études de marché, stratégie, et gestion de projet.
                 </p>
             </div>
 
-            <div class="mt-10">
+            <!-- <div class="mt-10">
                 <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
                     <div class="relative">
                         <dt>
@@ -79,7 +78,7 @@
                         </dd>
                     </div>
                 </dl>
-            </div>
+            </div> -->
 
         </div>
     </div>

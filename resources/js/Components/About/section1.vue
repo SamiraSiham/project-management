@@ -7,13 +7,11 @@
     </div>
     <div class="sm:w-full p-3">
         <div class="text">
-            <span class="text-accent border-b-2 border-accent uppercase">About us</span>
-            <h2 class="my-4 font-bold text-3xl  sm:text-4xl ">About <span class="text-accent">Our Company</span>
+            <!-- <span class="uppercase">About us</span> -->
+            <h2 class="my-4 font-bold text-3xl text-accent sm:text-4xl ">Les Outils Du Manager
             </h2>
-            <p class="text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, commodi
-                doloremque, fugiat illum magni minus nisi nulla numquam obcaecati placeat quia, repellat tempore
-                voluptatum.
+            <p class="text-gray text-justify">
+                Lafraxo Youness, professeur habilité à la Faculté des Sciences Juridiques, Économiques et Sociales de Marrakech, est un expert reconnu en marketing, en management, et particulièrement en management des systèmes d'information. Avec une solide expérience académique et une compréhension profonde des dynamiques managériales modernes, M. Lafraxo a dédié sa carrière à l'étude et à l'enseignement des pratiques de gestion les plus avancées. Son approche pédagogique vise à rapprocher les théories du management des réalités du terrain, mettant l'accent sur la manière dont les systèmes d’information peuvent transformer les organisations. Sa contribution à la formation de futurs leaders en gestion est renforcée par une recherche continue dans les domaines stratégiques de la transformation digitale et de l'innovation managériale.
             </p>
         </div>
     </div>
